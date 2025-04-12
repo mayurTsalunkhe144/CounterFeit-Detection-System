@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const SCANS_URl_Deployed =
-  "https://counter-feit-detection-system.vercel.app/";
+  "https://counter-feit-detection-system.vercel.app/dashboard/scans/";
 
 export const SCANS_URl_Local =
-  "https://counter-feit-detection-system.vercel.app/";
+  "https://counter-feit-detection-system.vercel.app/dashboard/scans/";
