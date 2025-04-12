@@ -16,7 +16,7 @@ const page = async ({ params }: RouteParams) => {
           productDescription={userProducts?.description || ""}
           purchaseDate={userProducts?.createdAt || ""}
           manufacturingDate={userProducts?.manufacturingDate || ""}
-          qrData={`http://localhost:3000/${id}`}
+          qrData={`https://counter-feit-detection-system.vercel.app/${id}`}
         />
       </h2>
     </div>
