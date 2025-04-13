@@ -1,6 +1,6 @@
 import ProductDisplayProps from "@/components/ui/ProductDisplayProps";
 import { getProductById } from "@/lib/actions/products";
-import { SCANS_URl_Deployed } from "@/lib/utils";
+import { SCANS_URl_Deployed, SCANS_URl_Local } from "@/lib/utils";
 import React from "react";
 
 const page = async ({ params }: RouteParams) => {
@@ -17,7 +17,11 @@ const page = async ({ params }: RouteParams) => {
           productDescription={userProducts?.description || ""}
           purchaseDate={userProducts?.createdAt || ""}
           manufacturingDate={userProducts?.manufacturingDate || ""}
+<<<<<<< HEAD:app/(root)/dashboard/scans/[id]/info/page.tsx
           qrData={`${SCANS_URl_Deployed}${id}/info`}
+=======
+          qrData={`${SCANS_URl_Local}/${id}`}
+>>>>>>> mayur:app/(root)/dashboard/manage-products/[id]/info/page.tsx
         />
       </h2>
     </div>

@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import Image from "next/image";
+import { formatDate } from "@/lib/utils";
 
 interface ProductDisplayProps {
   productName: string;
@@ -73,15 +74,8 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
   };
 
   // Format the manufacturing date to be more readable
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
+  const manufacturingDate_formatted = formatDate(manufacturingDate);
+  const purchaseDate_formatted = formatDate(purchaseDate);
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4">
       <div className="p-8">
@@ -106,11 +100,11 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
           </div>
           <div>
             <p className="text-gray-500 text-sm">Purchased On</p>
-            <p className="font-medium">{purchaseDate}</p>
+            <p className="font-medium">{purchaseDate_formatted}</p>
           </div>
           <div>
             <p className="text-gray-500 text-sm">Manufacturing Date</p>
-            <p className="font-medium">{formatDate(manufacturingDate)}</p>
+            <p className="font-medium">{manufacturingDate_formatted}</p>
           </div>
         </div>
 
