@@ -23,10 +23,10 @@ const DashBoardNav = () => {
 
   return (
     <div className="hidden md:flex md:flex-shrink-0">
-      <div className="flex flex-col w-64 h-screen bg-[#0b145e] text-white border-r ">
+      <div className="flex flex-col w-75 h-screen bg-[#232323] text-white border-r ">
         {/* Sidebar header */}
         <div className="flex items-center justify-center h-16 px-4 border-b border-blue-800">
-          <Link href="/dashboard" className="text-xl font-bold">
+          <Link href="/dashboard" className="text-2xl font-bold">
             DashBoard
           </Link>
         </div>
@@ -45,7 +45,7 @@ const DashBoardNav = () => {
                 }`}
               >
                 <span className="mr-3 text-lg">{tab.icon}</span>
-                <span className="text-sm font-medium">{tab.name}</span>
+                <span className="text font-medium">{tab.name}</span>
               </Link>
             ))}
           </nav>
