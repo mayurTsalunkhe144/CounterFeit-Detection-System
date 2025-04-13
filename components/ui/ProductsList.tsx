@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 interface ProductsListProps {
   products: ProductDetails[] | null;
 }
 
 const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-
   function toggleMenu(id: string): void {
     console.log(id);
   }
@@ -20,64 +17,53 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
         Product Inventory
       </h1>
 
-      <div className="space-y-6 flex gap-3">
+      <div className="space-y-4">
         {products &&
           products.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+              className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-shadow duration-300 flex justify-between items-center p-4"
             >
-              <div className="p-6 flex justify-between items-start">
-                <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-gray-800">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center space-x-4">
+                  <h2 className="text-lg font-semibold text-gray-800 truncate">
                     {product.productName}
                   </h2>
-                  <div className="mt-2 text-sm text-gray-600">
-                    <p>Manufacturer: {product.manufacturerName}</p>
-                    <p>
-                      Manufactured:{" "}
-                      {new Date(product.manufacturingDate).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="mt-4 flex items-center space-x-4 text-sm">
-                    <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                      {product.customerName}
-                    </span>
-                    <span className="text-gray-500">{product.description}</span>
-                  </div>
+                  <span className="inline-flex items-center px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full text-xs">
+                    {product.customerName}
+                  </span>
                 </div>
+                <div className="mt-1 text-sm text-gray-600 truncate">
+                  <span>Manufacturer: {product.manufacturerName}</span>
+                  <span className="mx-2">•</span>
+                  <span>
+                    Made:{" "}
+                    {new Date(product.manufacturingDate).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
 
-                {/* Three-dot menu */}
-                <div className="relative">
+              <div className="flex items-center space-x-3 ml-4">
+                <Link
+                  href={`/dashboard/manage-products/${product.id}/info`}
+                  className="p-1 text-gray-400 hover:text-blue-500 transition-colors"
+                  title="Product details"
+                >
                   <button
                     onClick={() => toggleMenu(product.id)}
-                    className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-700"
+                    className="p-1 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600"
                     aria-label="Product actions"
-                  ></button>
-
-                  {activeMenu === product.id && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
-                      <div className="py-1">
-                        <Link
-                          href={`/products/${product.id}`}
-                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <FiEye className="mr-3" />
-                          View Details
-                        </Link>
-                        <Link
-                          href={`/products/${product.id}/scans`}
-                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <FiList className="mr-3" />
-                          View Scans
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                    </svg>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
