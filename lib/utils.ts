@@ -24,4 +24,3 @@ export const formatDate = (dateString: string) => {
   });
   return formatted_date;
 };
->>>>>>> mayur
