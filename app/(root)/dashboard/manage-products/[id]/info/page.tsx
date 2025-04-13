@@ -17,11 +17,7 @@ const page = async ({ params }: RouteParams) => {
           productDescription={userProducts?.description || ""}
           purchaseDate={userProducts?.createdAt || ""}
           manufacturingDate={userProducts?.manufacturingDate || ""}
-<<<<<<< HEAD:app/(root)/dashboard/scans/[id]/info/page.tsx
-          qrData={`${SCANS_URl_Deployed}${id}/info`}
-=======
           qrData={`${SCANS_URl_Local}/${id}`}
->>>>>>> mayur:app/(root)/dashboard/manage-products/[id]/info/page.tsx
         />
       </h2>
     </div>
