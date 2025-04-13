@@ -1,5 +1,6 @@
 import ProductDisplayProps from "@/components/ui/ProductDisplayProps";
 import { getProductById } from "@/lib/actions/products";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SCANS_URl_Deployed, SCANS_URl_Local } from "@/lib/utils";
 import React from "react";
 
