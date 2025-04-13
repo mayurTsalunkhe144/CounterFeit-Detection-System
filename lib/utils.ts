@@ -9,10 +9,7 @@ export const SCANS_URl_Deployed =
   "https://counter-feit-detection-system.vercel.app/dashboard/scans/";
 
 export const SCANS_URl_Local =
-<<<<<<< HEAD
   "https://counter-feit-detection-system.vercel.app/dashboard/scans/";
-=======
-  "https://counter-feit-detection-system.vercel.app/";
 
 export const formatDate = (dateString: string) => {
   const isoTimestamp = dateString;
