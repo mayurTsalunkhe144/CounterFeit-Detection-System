@@ -1,14 +1,11 @@
 import ProductInfo from "@/components/ui/ProductInfo";
-import { getCurrentUser } from "@/lib/actions/auth.action";
+
 import { getProductById } from "@/lib/actions/products";
 import React from "react";
 
 const product_scan = async ({ params }: RouteParams) => {
   const { id } = await params;
-  const user = await getCurrentUser();
-  if (!user || !user.id) {
-    throw new Error("User not found or invalid user object");
-  }
+
   const userProduct = await getProductById(id);
   const isoTimestamp = userProduct?.createdAt;
   const dateObj = new Date(isoTimestamp || "");
