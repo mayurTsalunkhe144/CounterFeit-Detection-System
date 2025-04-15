@@ -1,5 +1,5 @@
 "use client";
-import { db } from "@/firebase/client";
+import { dbc } from "@/firebase/client";
 
 import { useUser } from "@clerk/nextjs";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
@@ -71,7 +71,7 @@ export default function ProductRegistrationForm() {
     try {
       // Simulate API call
       let docref: string = "";
-      await addDoc(collection(db, "products"), {
+      await addDoc(collection(dbc, "products"), {
         ...formData,
         userId: user?.id,
         createdAt: new Date().toLocaleString(),
@@ -85,7 +85,7 @@ export default function ProductRegistrationForm() {
         });
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      await updateDoc(doc(db, "products", docref), {
+      await updateDoc(doc(dbc, "products", docref), {
         id: docref,
       });
 

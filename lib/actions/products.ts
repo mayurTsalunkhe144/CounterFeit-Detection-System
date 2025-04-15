@@ -1,4 +1,14 @@
 import { db } from "@/firebase/admin"; // Adjusted the path to point to the correct location
+import { dbc } from "@/firebase/client"; // Adjusted the path to point to the correct location
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 
 export type scaninfo = {
   productID: string;
@@ -16,10 +26,12 @@ export async function getProductsByUserId(
   userId: string
 ): Promise<ProductDetails[] | null> {
   // console.log(userId);
-  const products = await db
-    .collection("products")
-    .where("userId", "==", userId)
-    .get();
+  // const products = await db
+  //   .collection("products")
+  //   .where("userId", "==", userId)
+  //   .get();
+  const q = query(collection(dbc, "products"), where("userId", "==", userId));
+  const products = await getDocs(q);
   // console.log(products);
   return products.docs.map((doc) => ({
     ...doc.data(),
@@ -29,15 +41,14 @@ export async function getProductsByUserId(
 export async function getProductById(
   ProductId: string
 ): Promise<ProductDetails | null> {
-  const product = await db
-    .collection("products")
-    .where("id", "==", ProductId)
-    .get();
+  const docref = doc(dbc, "products", ProductId);
+  const product = await getDoc(docref);
 
-  if (!product.empty) {
-    const productData = product.docs[0].data() as ProductDetails;
-    return productData;
+  if (product.exists()) {
+    console.log("product", product.data());
+    return { ...product.data(), id: product.id } as ProductDetails;
   }
+
   return null;
 }
 export type scaninfomap = {
@@ -47,17 +58,23 @@ export type scaninfomap = {
   productID: string;
 };
 export async function getScanById(ScanId: string): Promise<scaninfomap | null> {
-  const scanInfo = await db.collection("scans").doc(ScanId).get();
+  const docref = doc(dbc, "scans", ScanId);
+  const scan = await getDoc(docref);
 
-  const scanData = scanInfo.data() as scaninfomap | undefined;
-  return scanData || null;
+  if (scan.exists()) {
+    console.log("scanData", scan.data());
+    return { ...scan.data() } as scaninfomap;
+  }
+  return null;
 }
 
 export async function fetchScanData(): Promise<scaninfo[] | null> {
-  const scans = await db
-    .collection("scans")
-    .orderBy("ScannedDate", "desc")
-    .get();
+  // const scans = await db
+  //   .collection("scans")
+  //   .orderBy("ScannedDate", "desc")
+  //   .get();
+  const q = query(collection(dbc, "scans"), orderBy("ScannedDate", "desc"));
+  const scans = await getDocs(q);
   // console.log(scans);
   const scanInfo: scaninfo[] = scans.docs.map((doc) => {
     const data = doc.data();
@@ -72,5 +89,6 @@ export async function fetchScanData(): Promise<scaninfo[] | null> {
       scannedLatitude: data.scannedLatitude || "",
     };
   });
+  console.log("scanInfo", scanInfo);
   return scanInfo;
 }

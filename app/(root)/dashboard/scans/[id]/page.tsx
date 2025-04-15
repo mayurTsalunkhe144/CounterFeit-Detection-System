@@ -10,6 +10,7 @@ const page = async ({ params }: RouteParams) => {
     throw new Error("Scan information not found");
   }
   const product = await getProductById(ScanInfo.productID);
+  console.log("product", product);
   const productData = {
     productName: product?.productName || "Unknown Product",
     manufacturedDate: product?.manufacturingDate || "Unknown Date",

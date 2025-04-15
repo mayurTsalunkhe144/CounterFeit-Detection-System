@@ -1,5 +1,5 @@
 "use client";
-import { db } from "@/firebase/client";
+import { dbc } from "@/firebase/client";
 
 import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 import React, { useEffect } from "react";
@@ -28,12 +28,12 @@ type ScanInfo = {
 };
 
 const storeScanData = async (ScanInfo: ScanInfo) => {
-  await addDoc(collection(db, "scans"), {
+  await addDoc(collection(dbc, "scans"), {
     ...ScanInfo,
   })
     .then(async (docref) => {
       console.log(docref.id);
-      await updateDoc(doc(db, "products", docref.id), {
+      await updateDoc(doc(dbc, "products", docref.id), {
         id: docref,
       });
     })

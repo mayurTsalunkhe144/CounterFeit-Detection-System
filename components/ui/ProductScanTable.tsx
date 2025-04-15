@@ -14,6 +14,7 @@ export default function ProductScanTable({ scans = [] }: scaninfo) {
   // Ensure scans is an array
   const scanData = Array.isArray(scans) ? scans : [];
   const getProductName = async (ProductID: string) => {
+    console.log("product id", ProductID);
     const product = await getProductById(ProductID);
     return product?.productName || "Unknown Product";
   };
