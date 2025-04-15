@@ -5,7 +5,7 @@ import React from "react";
 
 const product_scan = async ({ params }: RouteParams) => {
   const { id } = await params;
-
+  const productId = id || "nothing in id";
   const userProduct = await getProductById(id);
   const isoTimestamp = userProduct?.createdAt;
   const dateObj = new Date(isoTimestamp || "");
@@ -42,6 +42,7 @@ const product_scan = async ({ params }: RouteParams) => {
           labelColor="text-blue-800"
           valueColor="text-blue-600"
           gap="gap-2"
+          productID={productId}
         />
       </div>
     </div>

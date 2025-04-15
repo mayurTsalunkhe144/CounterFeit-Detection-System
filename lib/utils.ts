@@ -8,8 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const SCANS_URl_Deployed =
   "https://counter-feit-detection-system.vercel.app/scan-info/";
 
-export const SCANS_URl_Local =
-  "https://counter-feit-detection-system.vercel.app/";
+export const SCANS_URl_Local = "http://localhost:3000/scan-info/";
 
 export const formatDate = (dateString: string) => {
   const isoTimestamp = dateString;

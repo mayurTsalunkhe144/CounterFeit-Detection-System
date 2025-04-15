@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     config.resolve.fallback = {
       ...config.resolve.fallback,
       child_process: false,
+      fs: false, // if you're seeing 'fs' errors too
+      net: false,
+      tls: false,
     };
     return config;
   },

@@ -84,8 +84,7 @@ export default function ProductRegistrationForm() {
           console.log("Error", e);
         });
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("After AddDoc");
-      console.log("doc ref", docref);
+
       await updateDoc(doc(db, "products", docref), {
         id: docref,
       });
