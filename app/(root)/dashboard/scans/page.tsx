@@ -1,13 +1,15 @@
-"use server";
 import ProductScanTable from "@/components/ui/ProductScanTable";
-import { fetchScanData, scaninfo } from "@/lib/actions/products";
+
+import { fetchScanData } from "@/lib/actions/products";
+import { auth } from "@clerk/nextjs/server";
 
 const ScansPage = async () => {
-  const scanData: scaninfo[] = (await fetchScanData()) || [];
-
+  const { userId } = await auth();
+  const userScans = await fetchScanData(userId as string);
+  // console.log(userScans);
   return (
     <div className="flex w-screen h-screen overflow-auto">
-      <ProductScanTable scans={scanData} />
+      <ProductScanTable scans={userScans || []} />
     </div>
   );
 };

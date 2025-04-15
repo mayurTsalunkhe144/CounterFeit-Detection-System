@@ -1,4 +1,4 @@
-import { db } from "@/firebase/admin"; // Adjusted the path to point to the correct location
+// import { db } from "@/firebase/admin"; // Adjusted the path to point to the correct location
 import { dbc } from "@/firebase/client"; // Adjusted the path to point to the correct location
 import {
   collection,
@@ -68,14 +68,18 @@ export async function getScanById(ScanId: string): Promise<scaninfomap | null> {
   return null;
 }
 
-export async function fetchScanData(): Promise<scaninfo[] | null> {
-  // const scans = await db
-  //   .collection("scans")
-  //   .orderBy("ScannedDate", "desc")
-  //   .get();
-  const q = query(collection(dbc, "scans"), orderBy("ScannedDate", "desc"));
+export async function fetchScanData(
+  userId: string
+): Promise<scaninfo[] | null> {
+  const q = await query(
+    collection(dbc, "scans"),
+    where("userId", "==", userId),
+    orderBy("ScannedDate", "desc")
+  );
+  console.log("snap", q);
   const scans = await getDocs(q);
   // console.log(scans);
+  console.log("scans", scans.docs);
   const scanInfo: scaninfo[] = scans.docs.map((doc) => {
     const data = doc.data();
 
@@ -85,10 +89,23 @@ export async function fetchScanData(): Promise<scaninfo[] | null> {
       productID: data.productID || "",
       scanId: doc.id,
       infoUrl: `http://localhost:3000/dashboard/scans/${doc.id}`, // Include the document ID
-      scannedLongitude: data.scannedLongitude || "",
-      scannedLatitude: data.scannedLatitude || "",
+      scannedLongitude: data.longitude || "no data ",
+      scannedLatitude: data.latitude || "no data",
     };
   });
   console.log("scanInfo", scanInfo);
   return scanInfo;
+}
+
+export async function getUserByProductId(ProductID: string) {
+  const docRef = doc(dbc, "products", ProductID);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    return data.userId; // Only get 'name' field
+  } else {
+    console.log("No such document!");
+    return null;
+  }
 }

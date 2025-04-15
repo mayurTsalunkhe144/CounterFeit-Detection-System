@@ -1,5 +1,6 @@
 "use client";
 import { dbc } from "@/firebase/client";
+import { getUserByProductId } from "@/lib/actions/products";
 
 import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 import React, { useEffect } from "react";
@@ -27,9 +28,10 @@ type ScanInfo = {
   productId?: string;
 };
 
-const storeScanData = async (ScanInfo: ScanInfo) => {
+const storeScanData = async (ScanInfo: ScanInfo, userId: string) => {
   await addDoc(collection(dbc, "scans"), {
     ...ScanInfo,
+    userId: userId,
   })
     .then(async (docref) => {
       console.log(docref.id);
@@ -53,29 +55,37 @@ const ProductInfo: React.FC<InfoLineProps> = ({
   productID,
 }) => {
   useEffect(() => {
-    console.log("productId", productID);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          const ScannedDate = new Date().toLocaleString();
-          const ScanInfo = {
-            longitude: longitude.toString(),
-            latitude: latitude.toString(),
-            ScannedDate: ScannedDate,
-            productID: productID,
-          };
-          storeScanData(ScanInfo);
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
-      );
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  });
+    const fetchUserAndStoreData = async () => {
+      const userId = productID ? await getUserByProductId(productID) : null;
+      if (!userId) {
+        console.error("User ID is null or undefined.");
+        return;
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const ScannedDate = new Date().toLocaleString();
+            const ScanInfo = {
+              longitude: longitude.toString(),
+              latitude: latitude.toString(),
+              ScannedDate: ScannedDate,
+              productID: productID,
+            };
+            storeScanData(ScanInfo, userId);
+          },
+          (error) => {
+            console.error("Error getting location:", error);
+          }
+        );
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    };
+
+    fetchUserAndStoreData();
+  }, []);
   return (
     <div
       className={`w-screen relative left-1/2 right-1/2 -mx-[50vw] ${backgroundColor} ${padding} ${className}`}
