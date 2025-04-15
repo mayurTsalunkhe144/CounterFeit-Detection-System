@@ -75,7 +75,7 @@ const ProductInfo: React.FC<InfoLineProps> = ({
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  }, []);
+  });
   return (
     <div
       className={`w-screen relative left-1/2 right-1/2 -mx-[50vw] ${backgroundColor} ${padding} ${className}`}
