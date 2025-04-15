@@ -6,7 +6,7 @@ const ScansPage = async () => {
   const scanData: scaninfo[] = (await fetchScanData()) || [];
 
   return (
-    <div className="flex w-screen h-scree">
+    <div className="flex w-screen h-screen overflow-auto">
       <ProductScanTable scans={scanData} />
     </div>
   );

@@ -5,7 +5,7 @@ import React from "react";
 const page = async ({ params }: RouteParams) => {
   const { id } = await params;
   const ScanInfo = await getScanById(id);
-  console.log(ScanInfo);
+  //   console.log(ScanInfo);
   if (!ScanInfo) {
     throw new Error("Scan information not found");
   }
@@ -21,7 +21,7 @@ const page = async ({ params }: RouteParams) => {
     scannedLongitude: ScanInfo?.longitude || "Unknown Longitude",
     scannedLatitude: ScanInfo?.latitude || "Unknown Latitude",
   };
-  console.log(productData);
+  //   console.log(productData);
   return (
     <div>
       <ProductScanDetails {...productData} />;

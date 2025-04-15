@@ -1,7 +1,7 @@
 import ProductDisplayProps from "@/components/ui/ProductDisplayProps";
 import { getProductById } from "@/lib/actions/products";
 import { SCANS_URl_Deployed } from "@/lib/utils";
-import { SCANS_URl_Local } from "@/lib/utils";
+// import { SCANS_URl_Local } from "@/lib/utils";
 import React from "react";
 
 const page = async ({ params }: RouteParams) => {
@@ -18,7 +18,7 @@ const page = async ({ params }: RouteParams) => {
           productDescription={userProducts?.description || ""}
           purchaseDate={userProducts?.createdAt || ""}
           manufacturingDate={userProducts?.manufacturingDate || ""}
-          qrData={`${SCANS_URl_Local}${id}`}
+          qrData={`${SCANS_URl_Deployed}${id}`}
         />
       </h2>
     </div>

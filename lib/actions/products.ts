@@ -15,12 +15,12 @@ export type scaninfo = {
 export async function getProductsByUserId(
   userId: string
 ): Promise<ProductDetails[] | null> {
-  console.log(userId);
+  // console.log(userId);
   const products = await db
     .collection("products")
     .where("userId", "==", userId)
     .get();
-  console.log(products);
+  // console.log(products);
   return products.docs.map((doc) => ({
     ...doc.data(),
   })) as ProductDetails[];
@@ -54,8 +54,11 @@ export async function getScanById(ScanId: string): Promise<scaninfomap | null> {
 }
 
 export async function fetchScanData(): Promise<scaninfo[] | null> {
-  const scans = await db.collection("scans").get();
-  console.log(scans);
+  const scans = await db
+    .collection("scans")
+    .orderBy("ScannedDate", "desc")
+    .get();
+  // console.log(scans);
   const scanInfo: scaninfo[] = scans.docs.map((doc) => {
     const data = doc.data();
 

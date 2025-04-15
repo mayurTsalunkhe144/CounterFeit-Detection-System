@@ -20,7 +20,10 @@ const HomeNav = () => {
           <div className="flex justify-between h-20">
             {/* Logo - Left */}
             <div className="flex-shrink-0 flex items-center  justify-self-start">
-              <Link href="/" className="text-xl font-bold">
+              <Link
+                href={isDashboard ? "/dashboard" : "/"}
+                className="text-xl font-bold"
+              >
                 <Image
                   src="/logo.png"
                   className="object-cover"
@@ -38,7 +41,9 @@ const HomeNav = () => {
                   <SignUpButton />
                 </SignedOut>
                 <SignedIn>
-                  <UserButton />
+                  <div className="flex items-center justify-center rounded-full bg-white p-2 mr-4 hover:bg-gray-200 transition duration-300">
+                    <UserButton />
+                  </div>
                 </SignedIn>
               </div>
             ) : (
