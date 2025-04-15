@@ -74,7 +74,7 @@ export default function ProductRegistrationForm() {
       await addDoc(collection(db, "products"), {
         ...formData,
         userId: user?.id,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toLocaleString(),
       })
         .then((DocRef) => {
           console.log("data added with id ", DocRef.id);
