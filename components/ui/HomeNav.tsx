@@ -15,9 +15,9 @@ const HomeNav = () => {
   const isDashboard = usePathname().includes("dashboard");
   return (
     <div>
-      <nav className="bg-[#0c1a96] text-white shadow-lg">
+      <nav className="bg-[#3343ff] text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between h-20">
             {/* Logo - Left */}
             <div className="flex-shrink-0 flex items-center  justify-self-start">
               <Link href="/" className="text-xl font-bold">
@@ -25,7 +25,7 @@ const HomeNav = () => {
                   src="/logo.png"
                   className="object-cover"
                   alt="logo"
-                  width={70}
+                  width={60}
                   height={20}
                 />
               </Link>
@@ -42,28 +42,28 @@ const HomeNav = () => {
                 </SignedIn>
               </div>
             ) : (
-              <div className="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex items-center space-x-6">
                 <Link
                   href="/"
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-300"
+                  className="px-3 py-2 rounded-md text-xl font-medium hover:bg-blue-800 transition duration-300"
                 >
                   Home
                 </Link>
                 <Link
                   href="/how-it-works"
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-300"
+                  className="px-3 py-2 rounded-md text-xl font-medium hover:bg-blue-800 transition duration-300"
                 >
                   How It Works
                 </Link>
                 <Link
                   href="/about-us"
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-300"
+                  className="px-3 py-2 rounded-md text-xl font-medium hover:bg-blue-800 transition duration-300"
                 >
                   About Us
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-300"
+                  className="px-3 py-2 rounded-md text-xl font-medium hover:bg-blue-800 transition duration-300"
                 >
                   Contact
                 </Link>
