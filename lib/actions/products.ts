@@ -21,7 +21,8 @@ export type scaninfo = {
 // Define the data type
 
 // Function to add a user to Firestore
-
+const urldeployed = "https://counter-feit-detection-system.vercel.app/";
+const urlLocal = "http://localhost:3000/";
 export async function getProductsByUserId(
   userId: string
 ): Promise<ProductDetails[] | null> {
@@ -88,7 +89,7 @@ export async function fetchScanData(
       scannedDate: data.ScannedDate || "",
       productID: data.productID || "",
       scanId: doc.id,
-      infoUrl: `http://localhost:3000/dashboard/scans/${doc.id}`, // Include the document ID
+      infoUrl: `${urldeployed}/dashboard/scans/${doc.id}`, // Include the document ID
       scannedLongitude: data.longitude || "no data ",
       scannedLatitude: data.latitude || "no data",
     };
