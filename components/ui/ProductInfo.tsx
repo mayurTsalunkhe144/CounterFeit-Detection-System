@@ -35,7 +35,7 @@ const storeScanData = async (ScanInfo: ScanInfo, userId: string) => {
   })
     .then(async (docref) => {
       console.log(docref.id);
-      await updateDoc(doc(dbc, "products", docref.id), {
+      await updateDoc(doc(dbc, "scans", docref.id), {
         id: docref,
       });
     })

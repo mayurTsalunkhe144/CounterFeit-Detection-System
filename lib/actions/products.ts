@@ -89,7 +89,7 @@ export async function fetchScanData(
       scannedDate: data.ScannedDate || "",
       productID: data.productID || "",
       scanId: doc.id,
-      infoUrl: `${urldeployed}/dashboard/scans/${doc.id}`, // Include the document ID
+      infoUrl: `${urlLocal}/dashboard/scans/${doc.id}`, // Include the document ID
       scannedLongitude: data.longitude || "no data ",
       scannedLatitude: data.latitude || "no data",
     };

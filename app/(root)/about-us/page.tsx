@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutUsPage = () => {
   return (
@@ -32,7 +33,8 @@ const AboutUsPage = () => {
                 About CounterFeit Detection
               </h1>
               <p className="mt-6 text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed">
-                We&apos;re on a mission to protect brands and consumers from counterfeit products through innovative technology solutions.
+                We&apos;re on a mission to protect brands and consumers from
+                counterfeit products through innovative technology solutions.
               </p>
             </div>
           </div>
@@ -51,7 +53,10 @@ const AboutUsPage = () => {
                     <div className="absolute -bottom-2 left-0 w-20 h-1 bg-[#3343ff]"></div>
                   </h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    We strive to create a marketplace free from counterfeit products by leveraging cutting-edge technology and artificial intelligence. Our platform empowers businesses and consumers to verify product authenticity instantly.
+                    We strive to create a marketplace free from counterfeit
+                    products by leveraging cutting-edge technology and
+                    artificial intelligence. Our platform empowers businesses
+                    and consumers to verify product authenticity instantly.
                   </p>
                 </div>
               </div>
@@ -80,30 +85,37 @@ const AboutUsPage = () => {
               {
                 title: "Innovation",
                 icon: "🚀",
-                description: "Continuously pushing the boundaries of technology to provide the best anti-counterfeit solutions.",
-                gradient: "from-blue-500 to-purple-500"
+                description:
+                  "Continuously pushing the boundaries of technology to provide the best anti-counterfeit solutions.",
+                gradient: "from-blue-500 to-purple-500",
               },
               {
                 title: "Integrity",
                 icon: "🛡️",
-                description: "Maintaining the highest standards of honesty and transparency in all our operations.",
-                gradient: "from-green-500 to-teal-500"
+                description:
+                  "Maintaining the highest standards of honesty and transparency in all our operations.",
+                gradient: "from-green-500 to-teal-500",
               },
               {
                 title: "Impact",
                 icon: "🌟",
-                description: "Making a real difference in protecting brands and consumers from counterfeit products.",
-                gradient: "from-orange-500 to-pink-500"
-              }
+                description:
+                  "Making a real difference in protecting brands and consumers from counterfeit products.",
+                gradient: "from-orange-500 to-pink-500",
+              },
             ].map((value, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group relative bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
                 <div className="p-8">
-                  <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
+                  <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    {value.title}
+                  </h3>
                   <p className="text-gray-600">{value.description}</p>
                 </div>
               </div>
@@ -111,8 +123,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-
-      
 
       {/* CTA Section */}
       <div className="py-20 bg-gradient-to-br from-[#3343ff] to-blue-600 text-white relative overflow-hidden">
@@ -125,13 +135,18 @@ const AboutUsPage = () => {
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Ready to Protect Your Brand?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+            Ready to Protect Your Brand?
+          </h2>
           <p className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto">
-            Join hundreds of brands that trust our counterfeit detection solution.
+            Join hundreds of brands that trust our counterfeit detection
+            solution.
           </p>
-          <button className="bg-white text-[#3343ff] px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors duration-300 shadow-lg">
-            Get Started Today
-          </button>
+          <Link href="/dashboard">
+            <button className="bg-white text-[#3343ff] px-8 py-4 rounded-full text-lg cursor-pointer  font-semibold hover:bg-opacity-90 transition-colors duration-300 shadow-lg">
+              Get Started Today
+            </button>
+          </Link>
         </div>
       </div>
     </div>
